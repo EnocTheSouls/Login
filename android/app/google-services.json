@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "359026652147",
+    "project_id": "iq-switch-82492",
+    "storage_bucket": "iq-switch-82492.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:359026652147:android:52b4c57373a45e89519886",
+        "android_client_info": {
+          "package_name": "com.example.iqswitch"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVGmoGTIFTBlPWDXMmNrcIALGhJOtQVSY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
