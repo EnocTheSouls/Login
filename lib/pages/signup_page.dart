@@ -4,7 +4,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:iqswitch/utils.dart';
 
-import 'main.dart';
+import '../main.dart';
 
 class SignUpWidget extends StatefulWidget {
   final Function() onClickedSignIn;
@@ -42,27 +42,38 @@ class _SignUpWidgetState extends State<SignUpWidget> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset(
-                  'assets/icono1.jpg',
-                  width: 50,
-                  height: 50,
-                ),
                 const SizedBox(height: 20),
                 const Text(
-                  'Bienvenido',
+                  'Crea una cuenta',
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 32),
+                  style: TextStyle(
+                      fontSize: 29,
+                      color: Colors.blue), // Cambio de color del texto
                 ),
-                const SizedBox(height: 40),
+                const SizedBox(height: 20), // Espacio adicional
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 20), // Espaciado entre imagen y texto
+                  child: Transform.rotate(
+                    angle: 90 * 0.0174533, // 90 grados en radianes
+                    child: Image.asset(
+                      'assets/icono3.png',
+                      width: 100,
+                      height: 100,
+                    ),
+                  ),
+                ),
+
                 TextFormField(
                   controller: emailController,
                   cursorColor: Colors.white,
                   textInputAction: TextInputAction.next,
-                  decoration: const InputDecoration(labelText: 'Correo'),
+                  decoration:
+                      const InputDecoration(labelText: 'Correo electrónico'),
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   validator: (email) =>
                       email != null && !EmailValidator.validate(email)
-                          ? 'Ingresa un correo valido'
+                          ? 'Ingresa un correo válido'
                           : null,
                 ),
                 const SizedBox(height: 4),
@@ -73,7 +84,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                   obscureText: true,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   validator: (value) => value != null && value.length < 6
-                      ? 'Ingrese minimo 6 caracteres'
+                      ? 'Ingresa al menos 6 caracteres'
                       : null,
                 ),
                 const SizedBox(height: 20),
@@ -81,26 +92,30 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size.fromHeight(50),
                   ),
-                  icon: const Icon(Icons.lock_open, size: 32),
+                  icon: const Icon(Icons.lock_open,
+                      size: 32,
+                      color: Colors.white), // Cambio de color del ícono
                   label: const Text(
-                    'Sign Up',
-                    style: TextStyle(fontSize: 24),
+                    'Regístrate',
+                    style: TextStyle(
+                        fontSize: 24,
+                        color: Colors.white), // Cambio de color del texto
                   ),
                   onPressed: signUp,
                 ),
                 const SizedBox(height: 20),
                 RichText(
                   text: TextSpan(
-                    style: const TextStyle(color: Colors.white, fontSize: 20),
-                    text: '¿No tienes cuenta?',
+                    style: const TextStyle(color: Colors.black, fontSize: 20),
+                    text: '¿Ya tienes cuenta? ',
                     children: [
                       TextSpan(
                         recognizer: TapGestureRecognizer()
                           ..onTap = widget.onClickedSignIn,
-                        text: 'Log In',
-                        style: TextStyle(
+                        text: 'Entra aquí',
+                        style: const TextStyle(
                             decoration: TextDecoration.underline,
-                            color: Theme.of(context).colorScheme.secondary),
+                            color: Colors.blue), // Cambio de color del texto
                       ),
                     ],
                   ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:iqswitch/login_widget.dart';
+import 'package:iqswitch/pages/login_page.dart';
 
-import 'signup_widget.dart';
+import 'signup_page.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});

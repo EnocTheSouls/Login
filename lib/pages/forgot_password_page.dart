@@ -33,10 +33,10 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          backgroundColor: const Color.fromARGB(120, 18, 16, 158),
+          backgroundColor: Theme.of(context).colorScheme.secondary,
           elevation: 0,
           title: const Text(
-            'Restablecer cpntraseña',
+            'Restablecer contraseña',
           ),
         ),
         body: Padding(
@@ -56,7 +56,8 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                     controller: emailController,
                     cursorColor: Colors.white,
                     textInputAction: TextInputAction.done,
-                    decoration: const InputDecoration(labelText: 'Correo'),
+                    decoration:
+                        const InputDecoration(labelText: 'Correo electronico'),
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (email) =>
                         email != null && !EmailValidator.validate(email)

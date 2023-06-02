@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:iqswitch/home_page.dart';
+import 'package:iqswitch/pages/home_page.dart';
 import 'package:iqswitch/utils.dart';
 
 class VerifyEmailPage extends StatefulWidget {
@@ -61,7 +61,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
 
   @override
   Widget build(BuildContext context) => isEmailVerified
-      ? const HomePage()
+      ? const HabitacionesScreen()
       : Scaffold(
           appBar: AppBar(
             title: const Text('Verificar correo'),

@@ -3,15 +3,16 @@ import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:firebase_core/firebase_core.dart';
 import 'package:iqswitch/utils.dart';
-import 'package:iqswitch/verify_email_page.dart';
+import 'package:iqswitch/pages/verify_email_page.dart';
 
-import 'auth_page.dart';
+import 'pages/auth_page.dart';
 // ignore: unused_import
-import 'home_page.dart';
+import 'pages/home_page.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -46,7 +47,7 @@ class MainPage extends StatelessWidget {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());
             } else if (snapshot.hasError) {
-              return const Center(child: Text('Something went wrong¡'));
+              return const Center(child: Text('Algo salio mal x(¡'));
             } else if (snapshot.hasData) {
               return const VerifyEmailPage();
             } else {

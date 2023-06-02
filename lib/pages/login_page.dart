@@ -1,11 +1,13 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-// ignore: unused_import, depend_on_referenced_packages
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:iqswitch/utils.dart';
 import 'forgot_password_page.dart';
-import 'main.dart';
+// ignore: unused_import
+import '../main.dart';
 
 class LoginWidget extends StatefulWidget {
   final VoidCallback onClickedSignUp;
@@ -42,19 +44,28 @@ class _LoginWidgetState extends State<LoginWidget> {
               height: 300,
             ),
             const SizedBox(height: 40),
-            TextField(
+            TextFormField(
               controller: emailController,
               cursorColor: const Color.fromARGB(255, 0, 0, 0),
               textInputAction: TextInputAction.next,
               decoration:
-                  const InputDecoration(labelText: 'Correo Electronico'),
+                  const InputDecoration(labelText: 'Correo Electrónico'),
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              validator: (email) =>
+                  email != null && !EmailValidator.validate(email)
+                      ? 'Ingresa un correo válido'
+                      : null,
             ),
             const SizedBox(height: 4),
-            TextField(
+            TextFormField(
               controller: passwordController,
               textInputAction: TextInputAction.done,
               decoration: const InputDecoration(labelText: 'Contraseña'),
               obscureText: true,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              validator: (value) => value != null && value.length < 6
+                  ? 'Ingresa al menos 6 caracteres'
+                  : null,
             ),
             const SizedBox(height: 20),
             ElevatedButton.icon(
@@ -63,18 +74,18 @@ class _LoginWidgetState extends State<LoginWidget> {
               ),
               icon: const Icon(Icons.lock_open, size: 32),
               label: const Text(
-                'Sign In',
+                'Iniciar Sesión',
                 style: TextStyle(fontSize: 24),
               ),
               onPressed: signIn,
             ),
             const SizedBox(height: 24),
             GestureDetector(
-              child: Text(
+              child: const Text(
                 '¿Olvidaste tu contraseña?',
                 style: TextStyle(
                   decoration: TextDecoration.underline,
-                  color: Theme.of(context).colorScheme.secondary,
+                  color: Colors.blue,
                   fontSize: 20,
                 ),
               ),
@@ -86,16 +97,19 @@ class _LoginWidgetState extends State<LoginWidget> {
             RichText(
               text: TextSpan(
                 style: const TextStyle(
-                    color: Color.fromARGB(255, 0, 0, 0), fontSize: 20),
+                  color: Color.fromARGB(255, 0, 0, 0),
+                  fontSize: 20,
+                ),
                 text: '¿No te has registrado?',
                 children: [
                   TextSpan(
                     recognizer: TapGestureRecognizer()
                       ..onTap = widget.onClickedSignUp,
-                    text: '  Sign Up',
-                    style: TextStyle(
-                        decoration: TextDecoration.underline,
-                        color: Theme.of(context).colorScheme.secondary),
+                    text: '  Registrarse',
+                    style: const TextStyle(
+                      decoration: TextDecoration.underline,
+                      color: Colors.blue,
+                    ),
                   ),
                 ],
               ),
