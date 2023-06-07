@@ -1,3 +1,4 @@
+// ignore: unused_import
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -55,46 +56,73 @@ class estadoDispositivo extends StatefulWidget {
 class _estadoDispositivoState extends State<estadoDispositivo> {
   late Duration tiempoSeleccionado;
   bool encendido = false;
-  Timer? _timer;
+  int sliderValue = 0;
 
   @override
   void initState() {
     super.initState();
   }
 
+  final List<String> sliderImages = [
+    'assets/foco2.png',
+    'assets/foco3.png',
+    'assets/foco4.png',
+    'assets/foco5.png',
+    'assets/foco6.png',
+  ];
+  final double imageSize = 500.0;
   @override
   Widget build(BuildContext context) {
-    String imagePath =
-        encendido ? 'assets/encendidoo.png' : 'assets/apagadoo.png';
-
     return Scaffold(
-      backgroundColor: encendido ? Colors.white : Colors.white,
+      backgroundColor: Colors.white, // Cambiar el color de fondo a blanco
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Align(
-              alignment: Alignment.topCenter,
-              child: Image.asset(
-                imagePath, // Ruta de la imagen en la carpeta assets
-                width: 400, // Ajusta el ancho de la imagen
-                height: 400, // Ajusta la altura de la imagen
-              ),
-            ),
-            const SizedBox(height: 60), // Espacio vertical adicional
-            Transform.scale(
-              scale: 2.0, // Ajusta la escala del interruptor
+            encendido
+                ? SizedBox(
+                    width: imageSize,
+                    height: imageSize,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Flexible(
+                          child: Image.asset(
+                            sliderImages[sliderValue],
+                            width: imageSize,
+                            height: imageSize,
+                          ),
+                        ),
+                        Slider(
+                          value: sliderValue.toDouble(),
+                          min: 0,
+                          max: sliderImages.length - 1,
+                          onChanged: (double value) {
+                            setState(() {
+                              sliderValue = value.toInt();
+                            });
+                          },
+                          divisions: sliderImages.length - 1,
+                          label: sliderValue.toString(),
+                        ),
+                      ],
+                    ),
+                  )
+                : Image.asset(
+                    'assets/apagadoo.png',
+                    width: imageSize,
+                    height: imageSize,
+                  ),
+            const SizedBox(height: 60),
+            // ignore: sized_box_for_whitespace
+            Container(
+              width: 200.0,
               child: Switch(
                 value: encendido,
                 activeColor: Colors.green,
                 onChanged: (bool value) {
-                  _timer
-                      ?.cancel(); // Cancelar el temporizador existente si hay alguno
-                  _timer = Timer(tiempoSeleccionado, () {
-                    setState(() {
-                      encendido =
-                          false; // Apagar el foco al finalizar el tiempo
-                    });
+                  setState(() {
+                    encendido = value;
                   });
                 },
               ),
