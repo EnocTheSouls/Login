@@ -35,6 +35,9 @@ dependencies:
   cloud_firestore: ^4.8.0
   firebase_auth: ^4.6.1
   email_validator: ^2.1.17
+  flutter_timer_countdown: ^1.0.5
+  flutter_countdown_timer: ^4.1.0
+  provider: ^6.0.5
   
 
 dev_dependencies:

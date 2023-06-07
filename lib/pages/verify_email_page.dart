@@ -1,13 +1,11 @@
 import 'dart:async';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:iqswitch/pages/home_page.dart';
+import 'package:iqswitch/views/habitaciones_screen.dart';
 import 'package:iqswitch/utils.dart';
 
 class VerifyEmailPage extends StatefulWidget {
   const VerifyEmailPage({super.key});
-
   @override
   // ignore: library_private_types_in_public_api
   _VerifyEmailPageState createState() => _VerifyEmailPageState();

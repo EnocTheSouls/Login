@@ -4,10 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:iqswitch/utils.dart';
 import 'package:iqswitch/pages/verify_email_page.dart';
-
 import 'pages/auth_page.dart';
-// ignore: unused_import
-import 'pages/home_page.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,7 +18,6 @@ final navigatorKey = GlobalKey<NavigatorState>();
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   static const String title = "IQ-Switch";
-
   @override
   Widget build(BuildContext context) => MaterialApp(
         scaffoldMessengerKey: Utils.messegerKey,
@@ -38,7 +34,6 @@ class MyApp extends StatelessWidget {
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
-
   @override
   Widget build(BuildContext context) => Scaffold(
         body: StreamBuilder<User?>(

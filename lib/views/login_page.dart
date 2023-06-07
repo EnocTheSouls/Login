@@ -5,7 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:iqswitch/utils.dart';
-import 'forgot_password_page.dart';
+import '../pages/forgot_password_page.dart';
 // ignore: unused_import
 import '../main.dart';
 

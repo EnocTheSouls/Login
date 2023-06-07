@@ -1,5 +1,8 @@
-// ignore: file_names
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+// ignore: unused_import
+import 'dispositivos_screen.dart';
 
 void main() => runApp(const SwitchApp());
 
@@ -34,43 +37,38 @@ class SwitchApp extends StatelessWidget {
           title: const Text('IQ-Switch'),
         ),
         body: const Center(
-          child: SwitchExample(),
+          child: estadoDispositivo(),
         ),
       ),
     );
   }
 }
 
-class SwitchExample extends StatefulWidget {
-  const SwitchExample({super.key});
-
+// ignore: camel_case_types
+class estadoDispositivo extends StatefulWidget {
+  const estadoDispositivo({super.key});
   @override
-  State<SwitchExample> createState() => _SwitchExampleState();
+  State<estadoDispositivo> createState() => _estadoDispositivoState();
 }
 
-class _SwitchExampleState extends State<SwitchExample> {
-  bool light = false;
-  // Nueva variable isAdmin
+// ignore: camel_case_types
+class _estadoDispositivoState extends State<estadoDispositivo> {
+  late Duration tiempoSeleccionado;
+  bool encendido = false;
+  Timer? _timer;
 
   @override
   void initState() {
     super.initState();
-    cargarHabitaciones(); // Cargar habitaciones al iniciar la app
-  }
-
-  void cargarHabitaciones() {
-    // Lógica para cargar habitaciones
-    // ...
-
-    // Establecer isAdmin en true para el primer usuario registrado
   }
 
   @override
   Widget build(BuildContext context) {
-    String imagePath = light ? 'assets/encendidoo.png' : 'assets/apagadoo.png';
+    String imagePath =
+        encendido ? 'assets/encendidoo.png' : 'assets/apagadoo.png';
 
     return Scaffold(
-      backgroundColor: light ? Colors.white : Colors.white,
+      backgroundColor: encendido ? Colors.white : Colors.white,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -87,11 +85,16 @@ class _SwitchExampleState extends State<SwitchExample> {
             Transform.scale(
               scale: 2.0, // Ajusta la escala del interruptor
               child: Switch(
-                value: light,
+                value: encendido,
                 activeColor: Colors.green,
                 onChanged: (bool value) {
-                  setState(() {
-                    light = value;
+                  _timer
+                      ?.cancel(); // Cancelar el temporizador existente si hay alguno
+                  _timer = Timer(tiempoSeleccionado, () {
+                    setState(() {
+                      encendido =
+                          false; // Apagar el foco al finalizar el tiempo
+                    });
                   });
                 },
               ),
